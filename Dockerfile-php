@@ -4,10 +4,11 @@ RUN apt update && apt install -y
 
 RUN apt install -y --no-install-recommends \
         git \
-        zli1bg-dev \
+        openssh-server \
+        zlib1g-dev \
         libxml2-dev \
         libzip-dev \
-    && docker-php-ext-intall \
+    && docker-php-ext-install \
         zip \
         intl \
         mysqli \
