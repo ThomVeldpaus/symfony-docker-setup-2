@@ -1,6 +1,6 @@
 # Docker dirs, unsafe to commit, git and key data etc
-./root/
-./mysql/
+root/
+mysql/
 
 ### PhpStorm+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
