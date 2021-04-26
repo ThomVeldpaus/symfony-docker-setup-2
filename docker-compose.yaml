@@ -22,10 +22,15 @@ services:
       dockerfile: Dockerfile-php
     environment:
       APP_ENV: dev
-      DATABASE_URL: mysql://symfony:symfony_password@docker-mysql:3306/symfony_db?serverVersion=8.0.24
+      DATABASE_URL: mysql://user:pass@docker-mysql:3306/symfony_db?serverVersion=8
     volumes:
     - ./symfony/:/var/www/symfony/
-#    - ./root/:/root/ // TODO: create .bashrc files
+      # TIP: Start agent in .bashrc file local ./root/
+      # add your $USER/.ssh folder to local ./root
+      # chmod -R 700 /root/.ssh when you're logged in as root
+      # re-login use your ssh keys for git
+      # git clone ssh@SymfonyRepository.git .
+    - ./root/:/root/
     ports:
     - 8001:80
     networks:
@@ -35,12 +40,12 @@ services:
 
   docker-mysql:
     container_name: docker-mysql
-    image: mysql
+    image: mysql:8
     command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--default-authentication-plugin=mysql_native_password']
     environment:
       MYSQL_DATABASE: symfony_db
-      MYSQL_USER: symfony
-      MYSQL_PASSWORD: symfony_password
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
       MYSQL_ROOT_PASSWORD: root
     ports:
     - 3306:3306
